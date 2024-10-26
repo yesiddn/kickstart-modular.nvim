@@ -69,6 +69,17 @@ return {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
+          ['file_browser'] = {
+            mappings = {
+              -- your custom insert mode mappings
+              ["n"] = {
+                -- your custom normal mode mappings
+                ["N"] = require('telescope').extensions.file_browser.actions.create, -- create a new file
+                ["r"] = require('telescope').extensions.file_browser.actions.rename, -- rename a file
+                ["h"] = require('telescope').extensions.file_browser.actions.goto_parent_dir, -- go to parent directory
+              },
+            }
+          },
         },
       }
 
