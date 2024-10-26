@@ -27,7 +27,7 @@ return {
               key = 'b',
             },
             {
-              icon = ' ',
+              icon = ' ',
               icon_hl = '@function',
               desc = 'Find Word',
               group = 'Label',
