@@ -29,6 +29,9 @@ return {
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+
+      -- For file browsing
+      "nvim-telescope/telescope-file-browser.nvim",
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -94,6 +97,29 @@ return {
           previewer = false,
         })
       end, { desc = '[/] Fuzzily search in current buffer' })
+
+      -- File Browser with the path of the current buffer
+      vim.keymap.set('n', '<leader>sb', 
+        function()
+          local telescope = require('telescope')
+
+          local function telescope_buffer_dir()
+            return vim.fn.expand("%:p:h")
+          end
+
+          telescope.extensions.file_browser.file_browser({
+            path = telescope_buffer_dir(),
+            cwd = telescope_buffer_dir(),
+            respect_gitignore = false,
+            hidden = true,
+            grouped = true,
+            previewer = false,
+            initial_mode = "normal",
+            layout_config = { height = 40 },
+          })
+        end, 
+        { desc = '[S]earch File [B]rowser with the path of the current buffer' }
+      )
 
       -- It's also possible to pass additional configuration options.
       --  See `:help telescope.builtin.live_grep()` for information about particular keys
