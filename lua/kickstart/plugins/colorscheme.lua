@@ -1,5 +1,10 @@
 return {
   {
+    "miikanissi/modus-themes.nvim",
+    name = "modus",
+    priority = 1000,
+  },
+  {
     "rebelot/kanagawa.nvim",
     name = "kanagawa",
     priority = 1000,
@@ -40,5 +45,8 @@ return {
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
-  }
+  },
+  {
+    "xiyaowong/transparent.nvim",
+  },
 }
