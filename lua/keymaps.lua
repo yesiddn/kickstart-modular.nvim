@@ -51,5 +51,4 @@ vim.keymap.set('n', '<leader>|', ':vsp<CR>', { noremap = true, silent = true, de
 -- Keymap to open a horizontal split below using -
 vim.keymap.set('n', '<leader>-', ':sp<CR>', { noremap = true, silent = true, desc = "Open horizontal split" })
 
-
 -- vim: ts=2 sts=2 sw=2 et
