@@ -51,4 +51,10 @@ vim.keymap.set('n', '<leader>|', ':vsp<CR>', { noremap = true, silent = true, de
 -- Keymap to open a horizontal split below using -
 vim.keymap.set('n', '<leader>-', ':sp<CR>', { noremap = true, silent = true, desc = "Open horizontal split" })
 
+-- Keymap to move lines up and down
+vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', { noremap = true, silent = true, desc = "Move line down" })
+vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', { noremap = true, silent = true, desc = "Move line up" })
+vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Move line down" })
+vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Move line up" })
+
 -- vim: ts=2 sts=2 sw=2 et
