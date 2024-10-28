@@ -181,10 +181,6 @@ return {
         --
 
         angularls = {
-          on_attach = function(client, bufnr)
-            on_attach(client, bufnr)
-            client.server_capabilities.renameProvider = false
-          end,
           filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
         },
         html = {},
