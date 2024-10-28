@@ -26,11 +26,11 @@ return {
           debounce = 75,
           keymap = {
             accept = false,
-            accept_word = "<S-l>",
+            accept_word = "<C-]>",
             accept_line = "<Tab>",
             next = "<M-]>",
             prev = "<M-[>",
-            dismiss = "<C-]>",
+            dismiss = "<C-[>",
           },
         },
         filetypes = {
