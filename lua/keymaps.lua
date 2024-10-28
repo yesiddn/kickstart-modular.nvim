@@ -45,6 +45,17 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Show info about the current buffer in the statusline
+--  See `:help vim.lsp.buf.hover()`
+-- vim.api.nvim_create_autocmd('CursorHold', {
+--   desc = 'Show info about the current buffer in the statusline',
+--   group = vim.api.nvim_create_augroup('kickstart-show-info', { clear = true }),
+--   pattern = '*',
+--   callback = function()
+--     vim.lsp.buf.hover()
+--   end,
+-- })
+
 -- Keymap to open a vertical split on the right using |
 vim.keymap.set('n', '<leader>|', ':vsp<CR>', { noremap = true, silent = true, desc = "Open vertical split" })
 

@@ -69,4 +69,9 @@ vim.opt.scrolloff = 10
 -- * a function with signature `function(buf) -> string|string[]`
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
+-- Set the floating window border
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = "rounded" -- Opciones: "none", "single", "double", "rounded", "solid", "shadow"
+})
+
 -- vim: ts=2 sts=2 sw=2 et
