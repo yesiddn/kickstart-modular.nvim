@@ -75,6 +75,17 @@ return {
         bind_to_cwd = false,
         follow_current_file = { enabled = true },
         use_libuv_file_watcher = true,
+        filtered_items = {
+          hide_dotfiles = false,  -- Cambia a false para mostrar archivos que comienzan con .
+          hide_gitignored = false, -- Cambia a false si deseas mostrar archivos ignorados por git
+          hide_hidden = true,
+        },
+        -- Keymaps for NeoTree window
+        -- window = {
+        --   mappings = {
+        --     ['\\'] = 'close_window',
+        --   },
+        -- },
       },
       window = {
         mappings = {
@@ -107,17 +118,5 @@ return {
         },
       },
     },
-    -- keys = {
-    --   { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
-    -- },
-    -- opts = {
-    --   filesystem = {
-    --     window = {
-    --       mappings = {
-    --         ['\\'] = 'close_window',
-    --       },
-    --     },
-    --   },
-    -- },
   }
 }
