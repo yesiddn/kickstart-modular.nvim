@@ -57,4 +57,7 @@ vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', { noremap = true, silent = true, de
 vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Move line down" })
 vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Move line up" })
 
+-- Keymap to show info about the current buffer in the statusline
+vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
+
 -- vim: ts=2 sts=2 sw=2 et
