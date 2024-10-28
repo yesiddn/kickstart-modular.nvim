@@ -34,12 +34,25 @@ return {
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'ray-x/lsp_signature.nvim',
     },
     config = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
+
+      -- Setup lsp_signature
+      require('lsp_signature').setup({
+        bind = true,
+        hint_enable = true,
+        floating_window = true,
+        floating_window_above_cur_line = true,
+        doc_lines = 2,
+        handler_opts = {
+          border = "rounded",
+        },
+      })
 
       cmp.setup {
         snippet = {
