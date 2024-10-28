@@ -179,9 +179,26 @@ return {
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
         --
-        angularls = {},
-        cssls = {},
+
+        angularls = {
+          on_attach = function(client, bufnr)
+            on_attach(client, bufnr)
+            client.server_capabilities.renameProvider = false
+          end,
+          filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
+        },
         html = {},
+        cssls = {
+          capabilities = {
+            textDocument = {
+              completion = {
+                completionItem = {
+                  snippetSupport = true,
+                },
+              },
+            },
+          },
+        },
         jsonls = {},
 
         lua_ls = {
