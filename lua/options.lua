@@ -62,6 +62,16 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- Enable line folding
+-- Fold based on expression (treesitter)
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldcolumn = "0"
+vim.opt.foldtext = ""
+-- vim.opt.foldlevelstart = 1
+-- vim.opt.foldnestmax = 4
+
 -- Root dir detection
 -- Each entry can be:
 -- * the name of a detector function like `lsp` or `cwd`
