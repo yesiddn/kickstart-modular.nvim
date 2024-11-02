@@ -52,6 +52,15 @@ vim.opt.splitbelow = true
 --  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.fillchars = { vert = '│', fold = ' ' }
+vim.opt.showbreak = '↪ '
+
+-- Neovim configuration to use spaces instead of tabs
+vim.opt.expandtab = true      -- Convert tabs to spaces
+vim.opt.tabstop = 8           -- Keep the default value at 8 to avoid issues with other editors
+vim.opt.shiftwidth = 2        -- Number of spaces used for indentation
+vim.opt.softtabstop = 2       -- Number of spaces inserted when pressing <Tab> in insert mode
+vim.opt.autoindent = true     -- Maintain the indentation of the previous line
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
