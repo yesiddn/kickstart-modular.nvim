@@ -81,6 +81,9 @@ vim.opt.foldtext = ""
 -- vim.opt.foldlevelstart = 1
 -- vim.opt.foldnestmax = 4
 
+-- True color support
+vim.opt.termguicolors = true
+
 -- Root dir detection
 -- Each entry can be:
 -- * the name of a detector function like `lsp` or `cwd`
