@@ -3,11 +3,17 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+-- Autoformat 
+vim.g.autoformat = true
+
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
 vim.opt.relativenumber = true
+
+vim.opt.pumblend = 10 -- Popup blend
+vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -28,10 +34,12 @@ vim.opt.breakindent = true
 
 -- Save undo history
 vim.opt.undofile = true
+vim.opt.undolevels = 10000
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.smartindent = true -- Insert indents automatically
 
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
@@ -52,12 +60,21 @@ vim.opt.splitbelow = true
 --  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-vim.opt.fillchars = { vert = '│', fold = ' ' }
+vim.opt.fillchars = {
+  vert = "│",
+  foldopen = "",
+  foldclose = "",
+  fold = "·",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+}
 vim.opt.showbreak = '↪ '
 
 -- Neovim configuration to use spaces instead of tabs
 vim.opt.expandtab = true      -- Convert tabs to spaces
 vim.opt.tabstop = 8           -- Keep the default value at 8 to avoid issues with other editors
+vim.opt.shiftround = true     -- Round indent
 vim.opt.shiftwidth = 2        -- Number of spaces used for indentation
 vim.opt.softtabstop = 2       -- Number of spaces inserted when pressing <Tab> in insert mode
 vim.opt.autoindent = true     -- Maintain the indentation of the previous line
@@ -95,5 +112,19 @@ vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded" -- Opciones: "none", "single", "double", "rounded", "solid", "shadow"
 })
+
+-- Set LSP servers to be ignored when used with `util.root.detectors.lsp`
+-- for detecting the LSP root
+vim.g.root_lsp_ignore = { "copilot" }
+
+vim.opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
+vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
+
+vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
+
+vim.opt.winminwidth = 5 -- Minimum window width
+
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
 
 -- vim: ts=2 sts=2 sw=2 et
