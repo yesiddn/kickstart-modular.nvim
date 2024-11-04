@@ -153,6 +153,7 @@ return {
         },
       },
       opts = {
+        render = "compact",
         stages = "slide",
         timeout = 3000,
         max_height = function()
@@ -181,11 +182,17 @@ return {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
+      cmdline = {
+        view = "cmdline",
+      },
       lsp = {
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
           ["cmp.entry.get_documentation"] = true,
+        },
+        progress = {
+          enabled = true,  -- Enable the progress indicator
         },
       },
       routes = {
@@ -205,6 +212,24 @@ return {
         bottom_search = true,
         command_palette = true,
         long_message_to_split = true,
+        lsp_doc_border = true,
+      },
+      views = {
+        confirm = {
+          border = {
+            style = "rounded",
+            text = {
+              top = " Confirmar ",
+              top_align = "center",
+            },
+          },
+          win_options = {
+            winblend = 0,
+            winhighlight = {
+              FloatBorder = "FloatBorder",
+            },
+          },
+        },
       },
     },
     -- stylua: ignore
@@ -229,4 +254,6 @@ return {
       require("noice").setup(opts)
     end,
   },
+  -- ui components
+  { "MunifTanjim/nui.nvim", lazy = true },
 }
