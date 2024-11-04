@@ -9,12 +9,14 @@ return {
     name = "kanagawa",
     priority = 1000,
     opts = {
+      transparent = true,
+      theme = "dragon",
       overrides = function(colors)
         local theme = colors.theme
         return {
-          Normal = { bg = "none" },
           NormalFloat = { bg = "none" },
           FloatBorder = { bg = "none" },
+          FloatTitle = { bg = "none" },
 
           NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
 
