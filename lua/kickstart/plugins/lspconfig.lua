@@ -178,13 +178,13 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        ts_ls = {},
+        -- ts_ls = {},
         --
 
         angularls = {
           filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
         },
-        vtsls = {},
+        -- vtsls = {},
         html = {},
         cssls = {
           capabilities = {
@@ -251,54 +251,54 @@ return {
     opts = {
       servers = {
         angularls = {},
-        vtsls = {
-          cmd = { "vtsls" },
-          -- explicitly add default filetypes, so that we can extend
-          -- them in related extras
-          filetypes = {
-            "javascript",
-            "javascriptreact",
-            "javascript.jsx",
-            "typescript",
-            "typescriptreact",
-            "typescript.tsx",
-          },
-          capabilities = {
-            textDocument = {
-              completion = {
-                completionItem = {
-                  snippetSupport = true,
-                },
-              },
-            },
-          },
-          settings = {
-            complete_function_calls = true,
-            vtsls = {
-              enableMoveToFileCodeAction = true,
-              autoUseWorkspaceTsdk = true,
-              experimental = {
-                completion = {
-                  enableServerSideFuzzyMatch = true,
-                },
-              },
-            },
-            typescript = {
-              updateImportsOnFileMove = { enabled = "always" },
-              suggest = {
-                completeFunctionCalls = true,
-              },
-              inlayHints = {
-                enumMemberValues = { enabled = true },
-                functionLikeReturnTypes = { enabled = true },
-                parameterNames = { enabled = "literals" },
-                parameterTypes = { enabled = true },
-                propertyDeclarationTypes = { enabled = true },
-                variableTypes = { enabled = false },
-              },
-            },
-          },
-        },
+        -- vtsls = {
+        --   cmd = { "vtsls" },
+        --   -- explicitly add default filetypes, so that we can extend
+        --   -- them in related extras
+        --   filetypes = {
+        --     "javascript",
+        --     "javascriptreact",
+        --     "javascript.jsx",
+        --     "typescript",
+        --     "typescriptreact",
+        --     "typescript.tsx",
+        --   },
+        --   capabilities = {
+        --     textDocument = {
+        --       completion = {
+        --         completionItem = {
+        --           snippetSupport = true,
+        --         },
+        --       },
+        --     },
+        --   },
+        --   settings = {
+        --     complete_function_calls = true,
+        --     vtsls = {
+        --       enableMoveToFileCodeAction = true,
+        --       autoUseWorkspaceTsdk = true,
+        --       experimental = {
+        --         completion = {
+        --           enableServerSideFuzzyMatch = true,
+        --         },
+        --       },
+        --     },
+        --     typescript = {
+        --       updateImportsOnFileMove = { enabled = "always" },
+        --       suggest = {
+        --         completeFunctionCalls = true,
+        --       },
+        --       inlayHints = {
+        --         enumMemberValues = { enabled = true },
+        --         functionLikeReturnTypes = { enabled = true },
+        --         parameterNames = { enabled = "literals" },
+        --         parameterTypes = { enabled = true },
+        --         propertyDeclarationTypes = { enabled = true },
+        --         variableTypes = { enabled = false },
+        --       },
+        --     },
+        --   },
+        -- },
       },
       setup = {
         angularls = function()
@@ -308,80 +308,80 @@ return {
             client.server_capabilities.renameProvider = false
           end, "angularls")
         end,
-        vtsls = function(_, opts)
-          local Util = require("custom.util")
-          Util.lsp.on_attach(function(client, buffer)
-            client.commands["_typescript.moveToFileRefactoring"] = function(command, ctx)
-              ---@type string, string, lsp.Range
-              local action, uri, range = unpack(command.arguments)
+        -- vtsls = function(_, opts)
+        --   local Util = require("custom.util")
+        --   Util.lsp.on_attach(function(client, buffer)
+        --     client.commands["_typescript.moveToFileRefactoring"] = function(command, ctx)
+        --       ---@type string, string, lsp.Range
+        --       local action, uri, range = unpack(command.arguments)
 
-              local function move(newf)
-                client.request("workspace/executeCommand", {
-                  command = command.command,
-                  arguments = { action, uri, range, newf },
-                })
-              end
+        --       local function move(newf)
+        --         client.request("workspace/executeCommand", {
+        --           command = command.command,
+        --           arguments = { action, uri, range, newf },
+        --         })
+        --       end
 
-              local fname = vim.uri_to_fname(uri)
-              client.request("workspace/executeCommand", {
-                command = "typescript.tsserverRequest",
-                arguments = {
-                  "getMoveToRefactoringFileSuggestions",
-                  {
-                    file = fname,
-                    startLine = range.start.line + 1,
-                    startOffset = range.start.character + 1,
-                    endLine = range["end"].line + 1,
-                    endOffset = range["end"].character + 1,
-                  },
-                },
-              }, function(_, result)
-                ---@type string[]
-                local files = result.body.files
-                table.insert(files, 1, "Enter new path...")
-                vim.ui.select(files, {
-                  prompt = "Select move destination:",
-                  format_item = function(f)
-                    return vim.fn.fnamemodify(f, ":~:.")
-                  end,
-                }, function(f)
-                  if f and f:find("^Enter new path") then
-                    vim.ui.input({
-                      prompt = "Enter move destination:",
-                      default = vim.fn.fnamemodify(fname, ":h") .. "/",
-                      completion = "file",
-                    }, function(newf)
-                      return newf and move(newf)
-                    end)
-                  elseif f then
-                    move(f)
-                  end
-                end)
-              end)
-            end
-          end, "vtsls")
-          -- copy typescript settings to javascript
-          opts.settings.javascript =
-            vim.tbl_deep_extend("force", {}, opts.settings.typescript, opts.settings.javascript or {})
-        end,
+        --       local fname = vim.uri_to_fname(uri)
+        --       client.request("workspace/executeCommand", {
+        --         command = "typescript.tsserverRequest",
+        --         arguments = {
+        --           "getMoveToRefactoringFileSuggestions",
+        --           {
+        --             file = fname,
+        --             startLine = range.start.line + 1,
+        --             startOffset = range.start.character + 1,
+        --             endLine = range["end"].line + 1,
+        --             endOffset = range["end"].character + 1,
+        --           },
+        --         },
+        --       }, function(_, result)
+        --         ---@type string[]
+        --         local files = result.body.files
+        --         table.insert(files, 1, "Enter new path...")
+        --         vim.ui.select(files, {
+        --           prompt = "Select move destination:",
+        --           format_item = function(f)
+        --             return vim.fn.fnamemodify(f, ":~:.")
+        --           end,
+        --         }, function(f)
+        --           if f and f:find("^Enter new path") then
+        --             vim.ui.input({
+        --               prompt = "Enter move destination:",
+        --               default = vim.fn.fnamemodify(fname, ":h") .. "/",
+        --               completion = "file",
+        --             }, function(newf)
+        --               return newf and move(newf)
+        --             end)
+        --           elseif f then
+        --             move(f)
+        --           end
+        --         end)
+        --       end)
+        --     end
+        --   end, "vtsls")
+        --   -- copy typescript settings to javascript
+        --   opts.settings.javascript =
+        --     vim.tbl_deep_extend("force", {}, opts.settings.typescript, opts.settings.javascript or {})
+        -- end,
       },
     },
   },
     -- Configure tsserver plugin
-  {
-    "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      local Util = require("custom.util")
-      local servers = opts.servers
-      Util.extend(opts.servers.vtsls, "settings.vtsls.tsserver.globalPlugins", {
-        {
-          name = "@angular/language-server",
-          location = Util.get_pkg_path("angular-language-server", "/node_modules/@angular/language-server"),
-          enableForWorkspaceTypeScriptVersions = false,
-        },
-      })
-    end,
-  },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = function(_, opts)
+  --     local Util = require("custom.util")
+  --     local servers = opts.servers
+  --     Util.extend(opts.servers.vtsls, "settings.vtsls.tsserver.globalPlugins", {
+  --       {
+  --         name = "@angular/language-server",
+  --         location = Util.get_pkg_path("angular-language-server", "/node_modules/@angular/language-server"),
+  --         enableForWorkspaceTypeScriptVersions = false,
+  --       },
+  --     })
+  --   end,
+  -- },
   {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
