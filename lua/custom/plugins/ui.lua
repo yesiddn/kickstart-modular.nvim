@@ -192,7 +192,7 @@ return {
           ["cmp.entry.get_documentation"] = true,
         },
         progress = {
-          enabled = true,  -- Enable the progress indicator
+          enabled = false,  -- Enable the progress indicator
         },
       },
       routes = {
