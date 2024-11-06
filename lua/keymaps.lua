@@ -55,6 +55,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --     vim.lsp.buf.hover()
 --   end,
 -- })
+vim.keymap.set('n', '<Leader>bt', function()
+  vim.lsp.buf.hover()
+end, { desc = 'Show hover information for the current symbol (Buffer)', noremap = true, silent = true })
+
+
 
 -- Keymap to open a vertical split on the right using |
 vim.keymap.set('n', '<leader>|', ':vsp<CR>', { noremap = true, silent = true, desc = "Open vertical split" })
