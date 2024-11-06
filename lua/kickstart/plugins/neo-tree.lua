@@ -112,8 +112,13 @@ return {
         },
         git_status = {
           symbols = {
-            unstaged = "󰄱",
-            staged = "󰱒",
+            added = "✚",    -- Icono para archivos agregados
+            modified = "●",  -- Icono para archivos modificados
+            deleted = "",   -- Icono para archivos eliminados
+            renamed = "󰏫",   -- Icono para archivos renombrados
+            untracked = "✦", -- Icono para archivos no rastreados
+            unstaged = "",   -- Icono para archivos no preparados
+            staged = "",    -- Icono para archivos preparados
           },
         },
       },
