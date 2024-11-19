@@ -32,20 +32,23 @@ return {
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby' },
       },
+      fold = {
+        enable = true,
+      },
       indent = { enable = true, disable = { 'ruby' } },
       autotag = { enable = true },
     },
-    config = function()
-      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-      parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
+    -- config = function()
+    --   local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+    --   parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
 
-      vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
-        pattern = { "*.component.html", "*.container.html" },
-        callback = function()
-          vim.treesitter.start(nil, "html") -- Usa el parser de HTML o "angular" si tienes uno específico
-        end,
-      })
-    end,
+    --   vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+    --     pattern = { "*.component.html", "*.container.html" },
+    --     callback = function()
+    --       vim.treesitter.start(nil, "html") -- Usa el parser de HTML o "angular" si tienes uno específico
+    --     end,
+    --   })
+    -- end,
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
     --
