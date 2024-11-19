@@ -36,7 +36,6 @@ return {
         enable = true,
       },
       indent = { enable = true, disable = { 'ruby' } },
-      autotag = { enable = true },
     },
     -- config = function()
     --   local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
@@ -55,6 +54,11 @@ return {
     --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  },
+  -- Automatically add closing tags for HTML and JSX
+  {
+    "windwp/nvim-ts-autotag",
+    opts = {},
   },
 }
 -- vim: ts=2 sts=2 sw=2 et
