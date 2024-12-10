@@ -213,6 +213,7 @@ return {
             },
           },
         },
+        emmet_ls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -251,6 +252,7 @@ return {
     opts = {
       servers = {
         angularls = {},
+        emmet_ls = {},
         -- vtsls = {
         --   cmd = { "vtsls" },
         --   -- explicitly add default filetypes, so that we can extend
